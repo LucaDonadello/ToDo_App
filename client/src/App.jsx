@@ -3,13 +3,12 @@ import { Header, Title } from "./components";
 import { useEffect, useState } from "react";
 
 const App = () => {
-
   const [tasks, setTasks] = useState([]);
 
   const getTasks = () => {
     fetch("/todos")
       .then((res) => res.json())
-      .then((data) => setTasks(data.result))
+      .then((data) => setTasks(data.result));
   };
 
   const deleteTask = (id) => {
@@ -21,7 +20,7 @@ const App = () => {
         console.log(resp);
         getTasks();
       });
-  }
+  };
 
   const editTask = (id, updatedTask) => {
     fetch(`/todos/${id}`, {
@@ -36,7 +35,7 @@ const App = () => {
         console.log(resp);
         getTasks();
       });
-  }
+  };
 
   const addTask = (task) => {
     fetch("/todos", {
@@ -51,7 +50,7 @@ const App = () => {
         console.log(resp);
         getTasks();
       });
-  }
+  };
 
   useEffect(() => {
     getTasks();
@@ -64,7 +63,12 @@ const App = () => {
           <Title />
         </div>
         <div className="flex-grow">
-          <Header tasks={tasks} deleteTask={deleteTask} editTask={editTask} addTask={addTask} />
+          <Header
+            tasks={tasks}
+            deleteTask={deleteTask}
+            editTask={editTask}
+            addTask={addTask}
+          />
         </div>
       </div>
     </BrowserRouter>
